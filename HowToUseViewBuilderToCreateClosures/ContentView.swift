@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct HeaderViewRegular: View {
+    
+    let title: String
+    let description: String?
+    let iconName: String?
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Title")
+            Text(title)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-            Text("Description")
-                .font(.callout)
+            
+            if let description = description {
+                Text(description)
+                    .font(.callout)
+            }
+            
+            if let iconName = iconName {
+                Image(systemName: iconName)
+            }
             
             RoundedRectangle(cornerRadius: 5)
                 .frame(height: 2)
@@ -27,8 +39,8 @@ struct HeaderViewRegular: View {
 struct ContentView: View {
     var body: some View {
         VStack {
-            HeaderViewRegular()
-            
+            HeaderViewRegular(title: "New Title", description: "Hello", iconName: "heart.fill")
+            HeaderViewRegular(title: "Another Title", description: nil, iconName: nil)
             Spacer()
         }
     }
